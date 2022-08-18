@@ -51,9 +51,7 @@ namespace Business.Concrete
                                        checkIfAssignedByIdExists(project.AssignedById),
                                        checkIfProjectLeaderExists(project.LeadById),
                                        checkIfStartDateOfProjectIsAppropriate(project),
-                                       checkIfProjectNameExist(project.ProjectName)
-                                       
-                                       
+                                      checkIfProjectNameExist(project.ProjectName)                                                                          
                                        );
             if (result != null)
             {
@@ -102,6 +100,12 @@ namespace Business.Concrete
         [SecuredOperation("admin,project,project.GetAllUsersByProjectId")]
         public IDataResult<List<UserForProjectDto>> GetAllUsersByProjectId(int projectId)
         {
+            IResult result = BusinessRules.Run(checkIfProjectIdExists(projectId));
+            if (result != null)
+            {
+                return new ErrorDataResult<List<UserForProjectDto>>(result.Message);
+
+            }
             return new SuccessDataResult<List<UserForProjectDto>>(_projectDal.GetAllUsersByProjectId(projectId));
 
         }

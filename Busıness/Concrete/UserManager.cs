@@ -43,7 +43,7 @@ namespace Business.Concrete
         {
             return _userDal.GetClaims(user);
         }
-
+          
         public User GetByMail(string email)
         {
             return _userDal.Get(u => u.Email == email);

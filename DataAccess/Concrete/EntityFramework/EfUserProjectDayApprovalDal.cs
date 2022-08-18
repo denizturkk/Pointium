@@ -7,7 +7,7 @@ using System.Text;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUserProjectDayDal:EfEntityRepositoryBase<UserProjectDay,PointiumContext>,IUserProjectDayDal
+    public class EfUserProjectDayApprovalDal: EfEntityRepositoryBase<UserProjectDayApproval, PointiumContext>, IUserProjectDayApprovalDal
     {
     }
 }

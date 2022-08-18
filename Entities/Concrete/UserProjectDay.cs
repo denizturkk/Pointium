@@ -11,7 +11,7 @@ namespace Entities.Concrete
         public int DayId { get; set; }
         public int ScoreTableId { get; set; }
         public int UserProjectId { get; set; }
-        public int UserProjectApprovalId { get; set; }
+        public int UserProjectDayApprovalId { get; set; }
         public DateTime CreatedAt { get; set; }
         public string Explanation { get; set; }
     }

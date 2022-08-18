@@ -11,7 +11,7 @@ namespace DataAccess.Concrete.EntityFramework
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=DESKTOP-GC0PB34;Database=Pointium;Trusted_Connection=true") ;
+            optionsBuilder.UseSqlServer(@"Server=DESKTOP-04SRGOA\MSSQLSERVER01;Database=Pointium; Trusted_Connection=True") ;
         }
 
         //From Entities
@@ -23,6 +23,10 @@ namespace DataAccess.Concrete.EntityFramework
         public DbSet<UserDetail> UserDetails { get; set; }
         public DbSet<UserProject> UserProjects { get; set; }
         public DbSet<UserProjectDay> UserProjectDays { get; set; }
+        public DbSet<UserProjectDayApproval> UserProjectDayApprovals { get; set; }
+        public DbSet<ScoreTable> ScoreTables { get; set; }
+        public DbSet<Day> Days { get; set; }
+       
 
 
         //From Core

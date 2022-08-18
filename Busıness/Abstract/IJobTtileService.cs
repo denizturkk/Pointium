@@ -6,12 +6,13 @@ using System.Text;
 
 namespace Business.Abstract
 {
-    public interface IJobTtileService
+    public interface IJobTitleService
     {
         IDataResult<List<JobTitle>> GetAll();
-        IDataResult<JobTitle> GetById(int id);
-        IResult Add(); 
+        IDataResult<JobTitle> Get(int id);
+        IResult Add(JobTitle jobTitle); 
         IResult Delete(JobTitle jobTitle);
+        IResult Update (JobTitle jobTitle);
 
     }
 }

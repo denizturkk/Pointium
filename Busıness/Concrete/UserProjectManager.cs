@@ -63,7 +63,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.UserProjectUpdated);
         }
 
-        public IResult Get(int id)
+        public IDataResult<UserProject> Get(int id)
         {
             return new SuccessDataResult<UserProject>(_userProjectDal.Get(p=>p.Id==id && p.IsDeleted==false));
         }

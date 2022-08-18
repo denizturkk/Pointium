@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -9,6 +10,7 @@ namespace WebAPI.Controllers
     public class UsersController : ControllerBase
     {
         private IUserService _userService;
+        private IUserDetailService _userDetailService;
         public UsersController(IUserService userService)
         {
             _userService = userService;
@@ -49,6 +51,19 @@ namespace WebAPI.Controllers
                }
               return BadRequest(result);
          }
+
+        [HttpPost("adduserdetails")]
+         public IActionResult AddUserDetails(UserDetail userDetail)
+        {
+            var result = _userDetailService.Add(userDetail);
+            if (result.Success)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result);
+        }
+
 
     }
 }

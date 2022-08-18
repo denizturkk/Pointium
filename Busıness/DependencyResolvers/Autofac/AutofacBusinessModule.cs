@@ -40,7 +40,20 @@ namespace Business.DependencyResolvers.Autofac
             builder.RegisterType<UserProjectDayManager>().As<IUserProjectDayService>().SingleInstance();
             builder.RegisterType<EfUserProjectDayDal>().As<IUserProjectDayDal>();
 
+            builder.RegisterType<UserProjectDayApprovalManager>().As<IUserProjectDayApprovalService>().SingleInstance();
+            builder.RegisterType<EfUserProjectDayApprovalDal>().As<IUserProjectDayApprovalDal>();
 
+            builder.RegisterType<ScoreTableManager>().As<IScoreTableService>().SingleInstance();
+            builder.RegisterType<EfScoreTableDal>().As<IScoreTableDal>();
+
+            builder.RegisterType<DepartmentManager>().As<IDepartmentService>().SingleInstance();
+            builder.RegisterType<EfDepartmentDal>().As<IDepartmentDal>();
+
+            builder.RegisterType<JobTitleManager>().As<IJobTitleService>().SingleInstance();
+            builder.RegisterType<EfJobTitleDal>().As<IJobTitleDal>();
+
+            builder.RegisterType<FieldManager>().As<IFieldService>().SingleInstance();
+            builder.RegisterType<EfFieldDal>().As<IFieldDal>();
 
 
 
