@@ -56,7 +56,7 @@ namespace WebAPI.Controllers
         [HttpGet("getbyuserid")]
         public IActionResult GetByUserId(int userId)
         {
-           
+           //data result dondurmeli?????
             var result = _userProjectService.GetAllWithDetailsByUserId(userId);
             if (result.Success)
             {

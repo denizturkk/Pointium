@@ -49,10 +49,7 @@ namespace Business.Concrete
             return new SuccessDataResult<List<ProjectForUserDto>>(_userProjectDal.GetAllWithDetailsByUserId(userId));
         }
 
-
-
-
-
+      
 
         //----------------------------SYSTEM-----------------------------
 
@@ -68,12 +65,16 @@ namespace Business.Concrete
             return new SuccessDataResult<UserProject>(_userProjectDal.Get(p=>p.Id==id && p.IsDeleted==false));
         }
 
+
         public IResult GetAll()
         {
             return new SuccessDataResult<List<UserProject>>(_userProjectDal.GetAll(p=>p.IsDeleted==false));
         }
-       
-        
+
+        public IDataResult<UserProject> GetUserProjectByUserAndProject(int userId, int projectId)
+        {
+            return new SuccessDataResult<UserProject>(_userProjectDal.Get(p => p.UserId == userId && p.ProjectId == projectId && p.IsDeleted == false));
+        }
 
         //-------------------------BUSINESSS RULES---------------------------------------
         private IResult CheckIfUserDoesNotExistInProject(UserProject userProject)
@@ -87,6 +88,7 @@ namespace Business.Concrete
 
             return new ErrorResult(Messages.UserAllreadyExistInProject);
         }
+
 
     }
 }

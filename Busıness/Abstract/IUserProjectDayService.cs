@@ -12,5 +12,7 @@ namespace Business.Abstract
         IResult Add(UserProjectDay userProjectDay);
         IResult Update(UserProjectDay userProjectDay);
         IDataResult<List<UserProjectDayForGetFunctionsDto>> GetMonthly(int userProjectId,int userId,int year, byte month);
+        
+        IDataResult<List<UserProjectDayForGetFunctionsDto>> GetMonthlyByUserAndProject(int userId, int projectId, int year, byte month);
     }
 }

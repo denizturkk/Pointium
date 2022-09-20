@@ -12,5 +12,6 @@ namespace DataAccess.Abstract
         List<ProjectForGetFunctionsDto> GetAllWithDetails();
         List<ProjectForGetFunctionsDto> GetAllWithDetailsByLeadById(int leadById);
         List<UserForProjectDto> GetAllUsersByProjectId(int projectId);
+        ProjectForGetFunctionsDto GetWithDetailsById(int id);
     }
 }

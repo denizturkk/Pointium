@@ -28,14 +28,14 @@ namespace Business.Concrete
             _userService = userService;
         }
         
-        [SecuredOperation("admin,project,project.getallwithdetails")]
+        //[SecuredOperation("admin,project,project.getallwithdetails")]
         public IDataResult<List<ProjectForGetFunctionsDto>> GetAllWithDetails()
         {
             return new SuccessDataResult<List<ProjectForGetFunctionsDto>>(_projectDal.GetAllWithDetails());
             
         }
-
-        [SecuredOperation("admin,project,project.getallwithdetailsbyleadid")]
+        
+       // [SecuredOperation("admin,project,project.getallwithdetailsbyleadid")]
         public IDataResult<List<ProjectForGetFunctionsDto>> GetAllWithDetailsByLeadId(int leadById)
         {
             return new SuccessDataResult<List<ProjectForGetFunctionsDto>>(_projectDal.GetAllWithDetailsByLeadById(leadById));
@@ -43,7 +43,7 @@ namespace Business.Concrete
         }
 
 
-        [SecuredOperation("admin,project,project.update")]
+       // [SecuredOperation("admin,project,project.update")]
         [ValidationAspect(typeof(ProjectValidator))]
         public IResult Update(Project project)
         {
@@ -62,7 +62,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.projectUpdated);
         }
 
-        [SecuredOperation("admin,project,project.delete")]
+       // [SecuredOperation("admin,project,project.delete")]
         public IResult Delete(Project project)
         {
             var result =BusinessRules.Run(checkIfProjectIdExists(project.Id));
@@ -77,7 +77,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        [SecuredOperation("admin,project,project.add")]
+        //[SecuredOperation("admin,project,project.add")]
         [ValidationAspect(typeof(ProjectValidator))]
         public IResult Add(Project project)
         {
@@ -97,7 +97,7 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ProjectCreated);
         }
 
-        [SecuredOperation("admin,project,project.GetAllUsersByProjectId")]
+      //  [SecuredOperation("admin,project,project.GetAllUsersByProjectId")]
         public IDataResult<List<UserForProjectDto>> GetAllUsersByProjectId(int projectId)
         {
             IResult result = BusinessRules.Run(checkIfProjectIdExists(projectId));
@@ -110,9 +110,24 @@ namespace Business.Concrete
 
         }
 
+        public IDataResult<ProjectForGetFunctionsDto> GetWithDetailsById(int id)
+        {
+            IResult result = BusinessRules.Run(checkIfProjectIdExists(id));
+            if (result != null)
+            {
+                return new ErrorDataResult<ProjectForGetFunctionsDto>(result.Message);
+
+            }
+            return new SuccessDataResult<ProjectForGetFunctionsDto>(_projectDal.GetWithDetailsById(id));
+        }
 
 
         //--------------------------System---------------------------
+
+         public IDataResult<Project> GetById(int Id)
+        {
+            return new SuccessDataResult<Project>(_projectDal.Get(p => p.Id == Id && p.IsDeleted == false));
+        }
         public IDataResult<List<Project>> GetAll()
         {
             return new SuccessDataResult<List<Project>>(_projectDal.GetAll(p => p.IsDeleted == false));
@@ -123,10 +138,6 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Project>>(_projectDal.GetAll(p => p.CustomerId == CustomerId&&p.IsDeleted==false));
         }
 
-        public  IDataResult<Project> GetById(int Id)
-        {
-            return new SuccessDataResult<Project>(_projectDal.Get(p=>p.Id==Id&& p.IsDeleted==false));
-        }
         public   IDataResult<List<Project>> GetByLeadId(int LeadById)
         {
             return new SuccessDataResult<List<Project>>(_projectDal.GetAll(p=>p.LeadById==LeadById&& p.IsDeleted==false));
@@ -134,6 +145,7 @@ namespace Business.Concrete
 
         //---------------------------Business Rules -----------------------
 
+    
         private IResult checkIfCustomerExist(int customerId)
         { 
             var result = _customerService.GetById(customerId).Data;

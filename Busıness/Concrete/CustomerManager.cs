@@ -42,9 +42,13 @@ namespace Business.Concrete
             return new SuccessResult(Messages.CustomerUpdated);
         }
 
-        IResult ICustomerService.Add(Customer customer)
+        public IResult Add(Customer customer)
         {
+            customer.AddedAt = DateTime.Now;
+            customer.Status = true;
+            customer.IsDeleted = false;
             _customerDal.Add(customer);
+           
             return new SuccessResult(Messages.CustomerAdded);
         }
     }

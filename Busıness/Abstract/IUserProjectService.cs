@@ -13,7 +13,8 @@ namespace Business.Abstract
         IResult Delete(UserProject userProject);
         IResult GetAll();
         IDataResult<UserProject> Get(int id);
-        IResult GetAllWithDetailsByUserId(int userId);    
-        
+        IResult GetAllWithDetailsByUserId(int userId);
+        IDataResult<UserProject> GetUserProjectByUserAndProject(int userId,int projectId);
+
     }
 }

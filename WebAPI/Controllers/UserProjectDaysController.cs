@@ -52,6 +52,20 @@ namespace WebAPI.Controllers
             return BadRequest(result);
 
         }
+        
+        [HttpGet("getmonthlybyuserandproject")]
+        public IActionResult GetMonthlyByUserAndProject(int userId, int projectId, int year, byte month)
+        {
+            var result = _userProjectDayService.GetMonthlyByUserAndProject(userId,projectId,year,month);
+            if (result.Success)
+            {
+                return Ok(result);
+
+            }
+            return BadRequest(result);
+        }
+
+
 
 
 

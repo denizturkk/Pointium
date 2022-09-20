@@ -11,7 +11,6 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfUserProjectDayDal:EfEntityRepositoryBase<UserProjectDay,PointiumContext>,IUserProjectDayDal
     {
-
         public List<UserProjectDayForGetFunctionsDto> GetMonthly(int userProjectId, int year, byte month)
         {
             using (var context = new PointiumContext())
@@ -38,26 +37,26 @@ namespace DataAccess.Concrete.EntityFramework
 
                              select new UserProjectDayForGetFunctionsDto
                              {
-                                Id = userProjectDay.Id,
-                                DayId=userProjectDay.DayId,
-                                CalendarDate = day.CalendarDate,
-                                DayOfWeekName = day.DayOfWeekName,
-                                FullMonthName = day.FullMonthName,
-                                CalendarDay=day.CalendarDay,
-                                MonthNameCd=day.MonthNameCD,
-                                HolidayFlag=day.HolidayFlag,
-                                ScoreTableId=scoreTable.Id,
-                                ScoreTableExplanation=scoreTable.Explanation,
-                                UserProjectId=userProject.Id,
-                                UserProjectDayApprovalId=userProjectDayApproval.Id,
-                                UserProjectDayApprovalName=userProjectDayApproval.Name,
-                                CreatedAt=userProjectDay.CreatedAt,
-                                Explanation=userProjectDay.Explanation,
+                                 Id = userProjectDay.Id,
+                                 DayId = userProjectDay.DayId,
+                                 CalendarDate = day.CalendarDate,
+                                 DayOfWeekName = day.DayOfWeekName,
+                                 FullMonthName = day.FullMonthName,
+                                 CalendarDay = day.CalendarDay,
+                                 MonthNameCd = day.MonthNameCD,
+                                 HolidayFlag = day.HolidayFlag,
+                                 ScoreTableId = scoreTable.Id,
+                                 ScoreTableExplanation = scoreTable.Explanation,
+                                 UserProjectId = userProject.Id,
+                                 UserProjectDayApprovalId = userProjectDayApproval.Id,
+                                 UserProjectDayApprovalName = userProjectDayApproval.Name,
+                                 CreatedAt = userProjectDay.CreatedAt,
+                                 Explanation = userProjectDay.Explanation,
                              };
 
                 return result.ToList();
 
-   
+
 
 
 

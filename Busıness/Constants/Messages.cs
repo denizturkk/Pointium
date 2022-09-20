@@ -1,4 +1,5 @@
 ﻿using Core.Entities.Concrete;
+using Entities.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Runtime.Serialization;
@@ -61,5 +62,6 @@ namespace Business.Constants
         public static string DepartmentNameExists="department name is allready exist!";
         public static string fieldNameIsExist="field name is allready exist!";
         public static string DepartmentInformationsNotCoherant="department informations are not coherant";
+        public static string SomethingWentWrong="something went wrong";
     }
 }

@@ -24,7 +24,7 @@ namespace Business.Concrete
             _userProjectService = userProjectService;
             _scoreTableService = scoreTableService;
         }
-        
+         
         
         public IResult Add(UserProjectDay userProjectDay)
         {
@@ -75,9 +75,22 @@ namespace Business.Concrete
             return new SuccessResult(Messages.ScoreUpdated);
         }
 
+        public IDataResult<List<UserProjectDayForGetFunctionsDto>> GetMonthlyByUserAndProject(int userId, int projectId, int year, byte month)
+        {
+            var tmpResult = _userProjectService.GetUserProjectByUserAndProject(userId,projectId);
+
+            if (tmpResult.Data!=null && tmpResult.Success==true)
+            {
+                return GetMonthly(tmpResult.Data.Id,userId, year, month);
+            }
+         
+            return new ErrorDataResult<List<UserProjectDayForGetFunctionsDto>>(Messages.SomethingWentWrong);
+
+        }
 
 
-       //---------------------BUSINESSS-------------------------------------------
+
+        //---------------------BUSINESSS-------------------------------------------
         private IResult CheckIfUserProjectExist(UserProjectDay userProjectDay)
         {
             var result = _userProjectService.Get(userProjectDay.UserProjectId);
@@ -133,5 +146,6 @@ namespace Business.Concrete
             return new ErrorResult(Messages.ScoreTableInputIsNotActive);
 
         }
+
     }
 }

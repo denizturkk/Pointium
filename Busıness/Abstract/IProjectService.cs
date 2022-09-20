@@ -13,6 +13,7 @@ namespace Business.Abstract
         IDataResult<List<ProjectForGetFunctionsDto>> GetAllWithDetails();
         IDataResult<List<ProjectForGetFunctionsDto>> GetAllWithDetailsByLeadId(int leadById);
         IDataResult<List<UserForProjectDto>> GetAllUsersByProjectId(int projectId);
+        IDataResult<ProjectForGetFunctionsDto> GetWithDetailsById(int id);
         IResult Add(Project project);
         IResult Update(Project project);
         IResult Delete(Project project);

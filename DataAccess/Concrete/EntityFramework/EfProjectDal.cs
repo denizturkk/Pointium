@@ -11,6 +11,50 @@ namespace DataAccess.Concrete.EntityFramework
 {
     public class EfProjectDal : EfEntityRepositoryBase<Project, PointiumContext>, IProjectDal
     {
+
+
+        public ProjectForGetFunctionsDto GetWithDetailsById(int id)
+        {
+            using (var context = new PointiumContext())
+            {
+                var result = from customer in context.Customers
+                             join project in context.Projects
+                             on customer.Id equals project.CustomerId
+                             
+
+                             join user in context.Users
+                             on project.LeadById equals user.Id
+
+                             join assignerUser in context.Users
+                             on project.AssignedById equals assignerUser.Id
+
+                             where project.IsDeleted == false
+                             where project.Id == id
+
+                             select new ProjectForGetFunctionsDto
+                             {
+                                 Id = project.Id,
+                                 CustomerId = project.CustomerId,
+                                 CompanyName = customer.CompanyName,
+                                 LeadById = project.LeadById,
+                                 LeadByFirstName = user.FirstName,
+                                 LeadByLastName = user.LastName,
+                                 leadByEMail = user.Email,
+                                 AssignedById = project.AssignedById,
+                                 AssignerFirstName = assignerUser.FirstName,
+                                 AssignerLastName = assignerUser.LastName,
+                                 AssignerMail = assignerUser.Email,
+                                 ProjectName = project.ProjectName,
+                                 Status = project.Status,
+                                 Explanation = project.Explanation,
+                                 StartedAt = project.StartedAt
+                             };
+
+                return result.SingleOrDefault();
+            }
+        }
+
+
         public List<ProjectForGetFunctionsDto> GetAllWithDetails()
         {
             using (var context = new PointiumContext())
